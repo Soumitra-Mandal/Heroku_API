@@ -6,9 +6,14 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
-
+var mongoose = require('mongoose');
+const { db } = require('./models/User');
 var app = express();
+var dbUri = "mongodb+srv://soumitra:soumi123@dc.0jrak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) => console.log("Successfully connected to database."))
+    .catch((err) => console.log(err));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
