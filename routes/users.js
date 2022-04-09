@@ -5,12 +5,16 @@ var User = require('../models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     User.find().then((result) => {
         res.send(result);
     });
 });
 
 router.post('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const user = new User(req.body);
     user.save()
         .then((result) => {
