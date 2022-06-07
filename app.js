@@ -7,12 +7,11 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
 var mongoose = require('mongoose');
-const { db } = require('./models/User');
 var app = express();
 var dbUri = "mongodb+srv://soumitra:soumi123@dc.0jrak.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((result) => console.log("Successfully connected to database."))
+    .then(() => console.log("Successfully connected to database."))
     .catch((err) => console.log(err));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +31,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
